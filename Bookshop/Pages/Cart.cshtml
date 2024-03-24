@@ -1,0 +1,78 @@
+@page
+@model CartModel
+@{
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" asp-href-include="/css/Style.global.css" asp-append-version="true"/>
+    <link rel="stylesheet" asp-href-include="/css/Cart.css" asp-append-version="true">
+    <script defer asp-src-include="/js/Cart.js" asp-append-version="true"></script>
+    <link rel="stylesheet" asp-href-include="/css/Template.css" asp-append-version="true"/>
+    <script defer type="module" asp-src-include="/js/Template.js" asp-append-version="true"></script>
+    <link rel="stylesheet" asp-href-include="/css/Style.global.css" asp-append-version="true"/>
+    <script defer type="module" asp-src-include="/js/Main.global.js" asp-append-version="true"></script>
+    <script defer asp-src-include="/js/AddToCart.js" asp-append-version="true"></script>
+</head>
+<body>
+    <main>
+        <h1>Booked Books:</h1>
+        <main id="booked-book-displayer">
+            <header>
+                <h3>Item</h3>
+                <h3>Quantity</h3>
+                <h3>Price</h3>
+                <h3>Subtotal</h3>
+            </header>
+            <section>
+                @foreach (var line in Model?.Cart?.Lines ?? Enumerable.Empty<CartLine>()) {
+                    <div>
+                        <span>
+                            <p>@line.Book.Title</p>
+                            <form asp-page-handler="Remove" method="post">
+                                <input type="hidden" name="Id" value="@line.Book.Id" />
+                                <button class="delete-button" type="submit"></button>
+                            </form>
+                        </span>
+                        <span>
+                            <p>@line.Quantity</p>
+                            <form asp-page-handler="Minus" method="post">
+                                <input type="hidden" name="Id" value="@line.Book.Id" />
+                                <button class="minus-button" type="submit"></button>
+                            </form>
+                            <form asp-page-handler="Plus" method="post">
+                                <input type="hidden" name="Id" value="@line.Book.Id" />
+                                <button class="plus-button" type="submit"></button>
+                            </form>
+                        </span>
+                        <span>
+                            <p>@line.Book.Price.ToString()$</p>
+                        </span>
+                        <span>
+                            <p>@((line.Quantity * line.Book.Price))$</p>
+                        </span>
+                    </div>
+                }
+                <div>
+                    <span>
+                        <p>@Model?.Cart?.ComputeTotalValue().ToString()$</p>
+                    </span>
+                </div>
+            </section>
+        </main>
+        <div class="button-displayer">
+            <a asp-action="Shop" asp-controller="Home">
+                <button class="icon-button" id="continue-shopping-button">Continue Shopping</button>
+            </a>
+
+            <a asp-action="Checkout" asp-controller="Order">
+                <button class="icon-button" id="checkout-button">Checkout</button>
+            </a>
+        </div>
+    </main>
+</body>
+</html>

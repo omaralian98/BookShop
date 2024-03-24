@@ -1,0 +1,219 @@
+/*@import url("/css/Style.global.css");*/
+
+form {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    place-self: start;
+    gap: 1.5rem;
+}
+
+form>div {
+    display: flex;
+    place-content: center end;
+    place-items: center end;
+    gap: 1rem;
+}
+
+form>div:last-child {
+    grid-column: 1 / -1;
+}
+
+form input {
+    width: 100%;
+}
+
+body>main {
+    padding: var(--padding);
+
+    display: flex;
+    flex-direction: column;
+    place-content: stretch;
+    place-items: stretch;
+}
+
+#book-card-displayer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    gap: 2rem;
+}
+
+#pagination-button-displayer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-content: center;
+    place-items: center;
+    place-self: center;
+}
+
+#pagination-button-displayer :is(a, button) {
+    width: 100%;
+}
+
+.book-card {
+    --width: 22rem;
+    --icon-width: 5rem;
+
+    position: relative;
+    width: var(--width);
+    height: calc(var(--width) * 4 / 3);
+
+    border-radius: 2rem;
+    border: 0.2rem solid var(--fore-colour);
+
+    transition: transform 500ms;
+
+    cursor: pointer;
+
+    overflow: hidden;
+}
+
+.book-card:hover {
+    transform: scale(1.02);
+}
+
+.book-card::before,
+.book-card::after {
+    font-weight: bold;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    aspect-ratio: 1;
+}
+
+.book-card::before {
+    content: "";
+
+    width: 4.5rem;
+
+    background-color: gold;
+
+    border-bottom-left-radius: 3rem;
+}
+
+.book-card::after {
+    content: attr(data-rating);
+
+    width: 4rem;
+
+    display: flex;
+    place-content: center;
+    place-items: center;
+
+    text-shadow: 0.15rem 0.15rem 0 var(--background-colour);
+}
+
+.book-card img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.book-card figcaption {
+    --padding-: 1rem;
+
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    place-content: end start;
+    place-items: end start;
+    gap: 1rem;
+
+    padding: var(--padding-);
+
+    transition: transform 500ms;
+}
+
+.book-card figcaption::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image: linear-gradient(transparent, var(--half-transparent));
+}
+
+.book-card figcaption h4 {
+    line-break: anywhere;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+.book-card figcaption p {
+    font-size: 1.4rem;
+
+    display: flex;
+    place-content: end;
+    place-items: end;
+
+    z-index: 1;
+}
+
+.book-card figcaption a {
+    width: var(--icon-width);
+    aspect-ratio: 1;
+}
+
+.book-card figcaption a>button {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+
+    background-color: transparent;
+
+    border: none;
+    border-radius: 0;
+}
+
+.book-card figcaption a>button::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image: url("/Images/Icons/shopping_cart.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+@media (min-width: 820px) {
+
+    form {
+        display: flex;
+        place-content: center start;
+        place-items: center start;
+    }
+
+    form>div:nth-child(2) {
+        order: 1;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+
+    .book-card::after {
+        color: var(--background-colour);
+        text-shadow: 0.15rem 0.15rem 0 var(--fore-darker-colour);
+    }
+
+    .book-card figcaption p {
+        color: var(--background-colour);
+    }
+
+    .book-card figcaption a>button::after {
+        filter: none;
+    }
+}

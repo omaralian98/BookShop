@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --main-color: #027581;
+    --color-dark: #1D2231;
+    --text-grey: #8390A2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Poppins' , sans-serif;
+    text-decoration: none;
+    list-style-type: none;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    max-height: 105vh;
+    background: #f1f5f9;
+}
+.main-content {
+    position: relative;
+    margin: 100px 0 0 240px;
+    transition: margin-left 500ms;
+    width: 420px;
+    height: 560px;
+    background: #FFF;
+    border-radius: 8px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.main-content .dashboard-cards {
+    background-color: #fff;
+}
+
+.main-content  h1 {
+    border-radius: 20px 20px 0 0;
+    text-align: center;
+    background-color: var(--main-color);
+    height: 60px;
+    padding: 10px;
+
+}
+
+.main-content .card-single {
+    max-height: 75vh;
+    overflow: auto;
+}
+.main-content .card-single .card-body {
+    display: -webkit-box;
+    margin: 1rem;
+    padding: 1rem;
+    height: 65px;
+    background-color: #f1f5f9;
+    border-radius: 20px 10px 0 20px;
+    border-bottom:2px solid var(--main-color);
+    
+}
+.main-content .card-single .card-body .info {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    min-width: 160px;
+    max-width: 140px;
+}
+.main-content .card-single .card-body .info img {
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.main-content  .info div h4 {
+    color: #8390A2;
+    font-size: 15px;
+}
+.main-content .card-single .card-body .button {
+    display: grid;
+    position: relative;
+    margin-left: 40%;
+    text-align: end;
+}
+.main-content .card-single .card-body .button img {
+    width: 18px;
+    position: relative;
+    top: 10px;
+    width: 18px;
+}
+.main-content .card-single .card-body a {
+    position: relative;
+    border-style: none;
+    background-color: #8390a281;
+    border: 1px solid var(--main-color);
+    padding: 2px;
+    color: var(--main-color);
+    display: none;
+}
+.main-content .card-single .card-body button {
+    border-style: none;
+    background-color: transparent;
+    position: relative;
+    width: 60px;
+    top: -12px;
+    right: 22px;
+    display: inherit;
+}
+.main-content .card-single .card-body .button:hover a {
+    background-color: lightblue;
+    display: inherit;
+}
+.main-content .card-single .card-body .b1::before {
+    content: "";
+    border-width: 7px;
+    border-style: solid;
+    border-color:transparent transparent transparent var(--main-color) ;
+    right: -14px;
+    position: absolute;
+    display: none;
+}
+
+.main-content .card-single .card-body .button:hover  .b1::before {
+    display: inherit;
+}
+.main-content .card-single .new-book {
+    position: sticky;
+    bottom: 10px;
+    left: calc(40% - 40px);
+    background: var(--main-color);
+    color: #fff;
+    padding: 5px;
+    border-radius: 10px 10px 0 0;
+}
+@media only screen and (max-width: 1200px) {
+    .sidebar {
+        width: 60px;
+        z-index: 150;
+    }
+    .main-content {
+        margin: 100px 0 0 60px;
+    }
+    .main-content .card-single {
+        overflow: auto;
+        width: auto;
+    }
+    .sidebar .sidebar-header h3 span,
+    .sidebar li span:last-child {
+        display: none;
+    }
+    .sidebar .sidebar-header,
+    .sidebar li {
+        display: flex;
+        justify-content: center;
+    }
+    
+    #sidebar-toggle:checked ~ .sidebar {
+        width: 240px;
+    }
+    
+    #sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span,
+    #sidebar-toggle:checked ~ .sidebar li span:last-child {
+        display: inline;
+    }
+    #sidebar-toggle:checked ~ .sidebar .sidebar-header {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    #sidebar-toggle:checked ~ .sidebar li {
+        display: block;
+    }
+}
+@media only screen and (max-width: 475px){
+    .main-content .card-single .card-body .button {
+        display: grid;
+        position: relative;
+        margin-left: 30%;
+        text-align: end;
+    }
+}

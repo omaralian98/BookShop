@@ -1,0 +1,45 @@
+@page
+@model Login
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" asp-href-include="/css/all.css" asp-append-version="true" />
+        <link rel="stylesheet" asp-href-include="/css/style.css" asp-append-version="true"/>
+        <title>Login</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="form-container">
+                <h1 class="form-header">LOGIN</h1>
+                <form class="form login" asp-page-handler="Login" method="post">
+                    <div class="data-feild">
+                        <label asp-for="@Model.Username">Username</label>
+                        <input asp-for="@Model.Username" id="username" type="text" placeholder="Enter UserName..."/>
+                        <div class="error error-user">
+                            Please Enter UserName.
+                        </div>
+                    </div>
+                    <div class="data-feild">
+                        <label asp-for="@Model.Password">Password</label>
+                        <div class="pass-feild">
+                            <input asp-for="@Model.Password" id="pass" type="password" placeholder="Enter Password..."/>
+                            <i class="fa-regular fa-eye-slash" style="color: var(--text-light);"></i>
+                        </div>
+                        <div class="error error-pass">
+                            Please Enter Password.
+                        </div>
+                    </div>
+                    <div class="buttons-feild">
+                        <button type="submit">Login</button>
+                        <a asp-page="SignUp">Sign Up</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script asp-src-include="/js/jquery-3.7.0.min.js" asp-append-version="true"></script>
+        <script asp-src-include="/js/main.js" asp-append-version="true"></script>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+@model List<Order>
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr><th colspan="5" class="text-center">UnShipped Orders</th></tr>
+    </thead>
+    <tbody>
+        @if (Model.Where(x => !x.Shipped).Count() > 0) {
+            @foreach (Order o in Model.Where(x => !x.Shipped)) {
+                <tr>
+                <td>@o.Name</td><td>@o.Zip</td><th>Book</th><th>Quantity</th>
+                <td>
+                    <form asp-page-handler="Ship" asp-route-Id="@o.OrderID" method="post">
+                        <button class="btn btn-sm btn-danger" type="submit">Ship</button>
+                    </form>
+                </td>
+                </tr>
+                @foreach (CartLine line in o.Lines) {
+                    <tr>
+                    <td colspan="2"></td>
+                    <td>@line.Book.Title</td><td>@line.Quantity</td>
+                    <td></td>
+                    </tr>
+                }
+            }
+        } else {
+            <tr><td colspan="5" class="text-center">No Orders</td></tr>
+        }
+    </tbody>
+</table>
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr><th colspan="5" class="text-center">Shipped Orders</th></tr>
+    </thead>
+    <tbody>
+        @if (Model.Where(x => x.Shipped).Count() > 0) {
+            @foreach (Order o in Model.Where(x => x.Shipped)) {
+                <tr>
+                <td>@o.Name</td><td>@o.Zip</td><th>Book</th><th>Quantity</th>
+                <td>
+                </td>
+                </tr>
+                @foreach (CartLine line in o.Lines) {
+                    <tr>
+                    <td colspan="2"></td>
+                    <td>@line.Book.Title</td><td>@line.Quantity</td>
+                    <td></td>
+                    </tr>
+                }
+            }
+        } else {
+            <tr><td colspan="5" class="text-center">No Orders</td></tr>
+        }
+    </tbody>
+</table>

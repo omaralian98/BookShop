@@ -1,0 +1,22 @@
+@model IQueryable<Role>
+@foreach (Role item in Model)
+{
+    <div class="card-body">
+        <div class="info">
+            <span class="ti-face-smile"></span>
+            <h3>@item.Name</h3>
+        </div>
+        <div class="button">
+            @if (item.Id == 2) {
+                <i><img src="/images/VerticalDots.svg" alt=""></i>
+                <button class="b1"><a asp-page="/EditRole" asp-route-id="@item.Id">Edit</a></button>
+            }
+            else if (item.Name == "Admin") { }
+            else {
+                <i><img src="/images/VerticalDots.svg" alt=""></i>
+                <button class="b1"><a asp-page="/EditRole" asp-route-id="@item.Id">Edit</a></button>
+                <button class="b2"><a asp-page="/RemoveRole" asp-route-id="@item.Id">Remove</a></button>
+            }
+        </div>
+    </div>
+}

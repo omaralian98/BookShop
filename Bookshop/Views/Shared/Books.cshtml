@@ -1,0 +1,16 @@
+@model IQueryable<Book>
+@foreach (Book item in Model)
+{
+    #pragma warning disable 8604
+    <div class="kids-conten">
+        <div class="card">
+            <img src = "@item.Coverpage.ToImg()" alt=""/>
+            <div class="info">
+                <h3 title="@item.Title">@item.Title</h3>
+                <p>@item.Author</p>
+            </div>
+            <a asp-page="/EditBook" asp-route-id="@item.Id"><button>Edit</button></a>
+            <a asp-page="/RemoveBook" asp-route-id="@item.Id"><button>Remove</button></a>
+        </div>
+    </div>
+}

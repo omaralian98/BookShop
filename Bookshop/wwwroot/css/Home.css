@@ -1,0 +1,12 @@
+/*@import url("../../Style.global.css");*/
+
+header~:is(main, section) {
+    gap: 0 !important;
+}
+
+@media (min-width: 820px) {
+
+    header~:is(main, section) {
+        gap: 2rem !important;
+    }
+}

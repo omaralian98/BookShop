@@ -1,0 +1,327 @@
+@font-face {
+    font-family: CascadiaCode;
+    font-style: normal;
+    font-weight: 400;
+    src: local("Cascadia Code"), url("https://fonts.cdnfonts.com/s/29131/Cascadia.woff") format("woff");
+}
+
+html {
+    --header-height: 8rem;
+    --footer-height: 4rem;
+
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
+}
+
+:root {
+    --main-colour: #00D647;
+    --background-colour: #222;
+    --background-darker-colour: #111;
+    --fore-colour: #FFF;
+    --fore-darker-colour: #999;
+    --half-transparent: #0000007C;
+    --best-bezier-curve: cubic-bezier(0.15, 0.95, 0.3, 1.5);
+
+    --main-colour-filter: invert(40%) sepia(40%) saturate(3678%) hue-rotate(98deg) brightness(99%) contrast(105%);
+
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: "Cascadia Code", CascadiaCode, Consolas, Arial;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    margin: 0;
+
+    color: var(--fore-colour);
+    background-color: var(--background-colour);
+
+    transition: color 500ms, background-color 500ms;
+}
+
+input,
+button,
+select {
+    font-family: inherit;
+    font-size: inherit;
+
+    color: inherit;
+    background-color: var(--half-transparent);
+
+    border: 0.2rem solid var(--fore-colour);
+    outline: none;
+}
+
+input {
+    padding: 1rem 1.5rem;
+
+    border-radius: 100rem;
+}
+
+button,
+select {
+    --padding: 1rem;
+
+    padding: var(--padding);
+
+    border-radius: 1rem;
+
+    cursor: pointer;
+
+    transition: transform 500ms;
+}
+
+:is(button, select):is(:hover, :focus-within) {
+    transform: scale(1.1);
+}
+
+select>option {
+    background-color: var(--background-colour);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+}
+
+q {
+    color: var(--main-colour);
+}
+
+q::before,
+q::after {
+    content: "";
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    padding-left: 2ch;
+    margin: 0;
+}
+
+img {
+    transition: filter 500ms;
+}
+
+.light-themed img {
+    filter: invert();
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+    height: 1rem;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--half-transparent);
+    outline: 0.2rem solid var(--background-colour);
+}
+
+*:not(body)::-webkit-scrollbar-track {
+    outline: 0.3rem solid var(--half-transparent);
+    border-radius: 100rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--main-colour);
+
+    border: 0.2rem solid var(--half-transparent);
+    border-radius: 100rem;
+}
+
+header~:is(main, section) {
+    --padding: 2.5rem;
+
+    min-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--padding) * 2);
+
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    place-items: center;
+    gap: 2rem;
+
+    padding: var(--padding) calc(var(--padding) * 2);
+}
+
+header~:is(main, section)>figure {
+    width: 55vmin;
+    aspect-ratio: 1;
+
+    display: flex;
+    place-content: center;
+    place-items: center;
+}
+
+header~:is(main, section)>figure>img {
+    width: 115%;
+    height: 115%;
+}
+
+header~:is(main, section)>h1 {
+    text-align: center;
+    text-transform: uppercase;
+
+    transform: skew(-15deg);
+
+    order: -1;
+
+    padding: 1rem;
+
+    background-color: var(--main-colour);
+}
+
+header~:is(main, section)>section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.button-displayer {
+    width: fit-content;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-content: center;
+    place-items: center;
+    gap: 1.5rem;
+}
+
+.button-displayer :is(a, button) {
+    height: 100%;
+    width: 100%;
+}
+
+.icon-button,
+.left-icon-button {
+    --icon-url: url("");
+}
+
+.arrowed-button,
+.icon-button {
+    position: relative;
+
+    padding-right: calc(var(--padding) * 4);
+}
+
+.left-arrowed-button,
+.left-icon-button {
+    position: relative;
+
+    padding-left: calc(var(--padding) * 4);
+}
+
+:is(.arrowed-button, .left-arrowed-button)::after {
+    --icon-url: url("/Images/Icons/arrow_thin.svg");
+}
+
+:is(.arrowed-button, .left-arrowed-button, .icon-button, .left-icon-button)::after {
+    content: "";
+
+    position: absolute;
+    right: calc(var(--padding) / 2);
+    top: 50%;
+    transform: translateY(-50%);
+    height: calc(100% - var(--padding));
+    aspect-ratio: 1;
+
+    background-image: var(--icon-url);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+
+    transition: filter 500ms;
+}
+
+:is(.left-arrowed-button, .left-icon-button)::after {
+    right: auto;
+    left: calc(var(--padding) / 2);
+    transform: translateY(-50%);
+}
+
+.arrowed-button::after {
+    transform: translateY(-50%) rotate(-90deg);
+}
+
+.left-arrowed-button::after {
+    transform: translateY(-50%) rotate(+90deg);
+}
+
+.emphasized-button {
+    background-color: var(--main-colour);
+}
+
+@media (prefers-color-scheme: light) {
+
+    :root {
+        --background-colour: #EEE;
+        --background-darker-colour: #CCC;
+        --fore-colour: #222;
+        --fore-darker-colour: #444;
+        --half-transparent: #00000025;
+    }
+
+    button::after,
+    .icon {
+        filter: invert(1);
+    }
+}
+
+@media (min-width: 820px) {
+
+    header~:is(main, section) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+        place-content: center;
+        place-items: center;
+    }
+
+    header~:is(main, section)>figure {
+        width: 100%;
+        max-width: 70vmin;
+
+        grid-column: 1;
+        grid-row: 1 / -1;
+    }
+
+    header~:is(main, section):nth-child(2n + 1)>figure {
+        grid-column: 2;
+    }
+
+    header~:is(main, section)>h1 {
+        place-self: end start;
+    }
+
+    header~:is(main, section)>section {
+        place-self: start;
+    }
+}
+.Pagging {
+    background-color: Red;
+    all: unset;
+    width: 20px;
+}
+.Pagging::-webkit-outer-spin-button,
+.Pagging::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+    margin: 0;
+}
+.btn {
+    cursor: pointer;
+}

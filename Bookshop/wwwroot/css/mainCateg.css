@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --main-color: #027581;
+    --color-dark: #1D2231;
+    --text-grey: #8390A2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Poppins' , sans-serif;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+body {
+    min-height: 100vh;
+    max-height: 105vh;
+    background: #f1f5f9;;
+}
+.main-content {
+    position: relative;
+    margin: 100px 0 0 240px;
+    transition: margin-left 500ms;
+}
+
+.main-content .dashboard-cards {
+    background-color: #fff;
+    margin: 37px 20px 20px;
+    padding: 10px;
+    border-radius: 20px;
+
+}
+.main-content .dashboard-cards h1 {
+    position: sticky;
+    top: 5px;
+    border-radius: 2px 2px 5px 5px;
+    text-align: center;
+    margin-top: 1rem;
+    background-color: var(--main-color);
+}
+.main-content .card-single {
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+}
+
+.main-content .card-body {
+    margin: 20px;
+    background: #f1f5f9;
+    border-radius: 10px;
+
+}
+.main-content .card-body img {
+    width: 180px;
+    height: 180px;
+    border-radius: 10px 10px 0 0;
+}
+.main-content .card-body .info {
+    max-width: 150px;
+    margin: 10px;
+}
+.main-content .card-body .info h3 {
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--color-dark);
+    margin-bottom: 5px;
+    text-align: center;
+}
+.main-content .card-body .info button{
+    margin: .5rem;
+    width: 56px;
+    border: 1px solid var(--main-color);
+    background-color: var(--main-color);
+    border-radius: .3rem;
+    color: #fff;   
+}
+.main-content .card-body .info button:hover {
+    color: var(--main-color);
+    background-color: #fff;
+    cursor: pointer;
+    transition-duration: 400ms;
+    transform:scale(150%);
+}
+.main-content .card-body .newcateg {
+    position: relative;
+    top: 90px;
+    width: 180px;
+    height: 213.4px;
+}
+.main-content .card-body .AAA {
+    font-size: 50px;
+    text-align: center;
+    color: var(--color-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+@media only screen and (max-width: 1200px) {
+    .sidebar {
+        width: 60px;
+        z-index: 150;
+    }
+    
+    .sidebar .sidebar-header h3 span,
+    .sidebar li span:last-child {
+        display: none;
+    }
+    .sidebar .sidebar-header,
+    .sidebar li {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .main-content {
+        margin-left: 60px;
+    }
+    
+    #sidebar-toggle:checked ~ .sidebar {
+        width: 240px;
+    }
+    
+    #sidebar-toggle:checked ~ .sidebar .sidebar-header h3 span,
+    #sidebar-toggle:checked ~ .sidebar li span:last-child {
+        display: inline;
+    }
+    #sidebar-toggle:checked ~ .sidebar .sidebar-header {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    #sidebar-toggle:checked ~ .sidebar li {
+        display: block;
+    }
+    
+    #sidebar-toggle:checked ~ .main-content {
+        margin-left: 60px;
+    }
+    .main-content .card-body {
+        margin-top: 10px;
+    }
+}
+@media only screen and (max-width: 980px) {
+    .main-content .card-body {
+        margin: 10px;
+    
+    }
+    .main-content .card-body .newcateg {
+        width: 140px;
+    }
+    .main-content .card-body img {
+        width: 140px;
+        height: 140px;
+    }
+    .main-content .card-body .info {
+        max-width: 120px;
+        margin: 5px;
+    }
+    .main-content .card-body .info h3 {
+        font-size: .8rem;
+    }
+    .main-content .card-body .info button{
+        margin: .5rem;
+        width: 40px;
+        font-size: .6rem;
+    }
+}
+@media only screen and (max-width: 775px) {
+    .main-content .card-single {
+        margin: 20px 3px;
+    }
+    .main-content .card-body .newcateg {
+        width: 140px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .main-content .dashboard-cards {
+        margin: 30px 10px 10px;
+    }
+    .main-content .card-single {
+        margin: 20px 10px 20px;
+        padding: 20px 10px 20px;
+    }
+    .main-content .card-body .newcateg {
+        width: 140px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .main-content {
+        padding-left: 1rem;
+        margin-right: 1rem;
+    }
+    .main-content .card-single {
+        margin: 20px 0 20px;
+        padding: 20px 0 20px;
+    }
+    .main-content .card-body .newcateg {
+        width: 140px;
+    }
+    .main-content .card-body .newcateg {
+        top: 0;
+    }
+    .main-content .card-body .AAA {
+        font-size: 30px;
+    }
+}

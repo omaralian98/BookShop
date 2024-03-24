@@ -1,0 +1,88 @@
+@model IBook
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookShop</title>
+    <link rel="stylesheet" asp-href-include="/css/Template.css" asp-append-version="true"/>
+    <script defer type="module" asp-src-include="/js/Template.js" asp-append-version="true"></script>
+    <link rel="stylesheet" asp-href-include="/css/Style.global.css" asp-append-version="true"/>
+    <script defer type="module" asp-src-include="/js/Main.global.js" asp-append-version="true"></script>
+    <link rel="stylesheet" asp-href-include="/css/Home.css" asp-append-version="true">
+    <script defer asp-src-include="/js/Home.js" asp-append-version="true"></script>
+    <script defer asp-src-include="/js/AddToCart.js" asp-append-version="true"></script>
+</head>
+<body>
+    <main class="main-section">
+        <figure>
+            <img src="/Images/digital_library.svg" alt="digital_library" />
+        </figure>
+        <h1>Hello and Welcome</h1>
+        <section>
+            <h3>Your Book's Waiting You!</h3>
+            <p>
+                Start by searching for the book(s) you like, inclusive to
+                most common languages, any genre, price, and more...
+            </p>
+            <div class="button-displayer">
+                <a asp-controller="Home" asp-action="Shop">
+                    <button class="arrowed-button emphasized-button">
+                        Browse Now
+                    </button>
+                </a>
+                <a href="#langauge-support-section">
+                    <button>
+                        Learn More
+                    </button>
+                </a>
+            </div>
+        </section>
+    </main>
+    <section id="langauge-support-section">
+        <figure>
+            <img src="/Images/mobile_book.svg" alt="mobile_book" />
+        </figure>
+        <h1>Language Support</h1>
+        <section>
+            <p>
+                Currently we only have support for English and Arabic
+                languages, but we're aiming towards featuring more and more
+                of common languages, such as German, France, etc...
+            </p>
+        </section>
+    </section>
+    <section id="genre-of-choice-section">
+        <figure>
+            <img src="/Images/e_book.svg" alt="e_book" />
+        </figure>
+        <h1>Genre of Choice</h1>
+        <section>
+            <p>
+                We provide tons of available genres, here are
+                the most popular of them that might interest you:
+            </p>
+            <ul>
+                <li>Fiction</li>
+                <li>Fantasy</li>
+                <li>History</li>
+                <li>Adventure</li>
+                <li>Romance</li>
+            </ul>
+        </section>
+    </section>
+    <section id="genre-of-choice-section">
+        <figure>
+            <img src="/Images/online_graduation.svg" alt="online_graduation" />
+        </figure>
+        <h1>Pick Your Price</h1>
+        <section>
+            <p>
+                Choose your suitable price, and start searching for books
+                that have the same price or close to it, saving more time
+                in finding what you really wish to afford.
+            </p>
+        </section>
+    </section>
+</body>
+</html>

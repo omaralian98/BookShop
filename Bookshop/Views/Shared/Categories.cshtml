@@ -1,0 +1,13 @@
+@model IQueryable<Category>
+@foreach (Category item in Model)
+{
+    #pragma warning disable 8604
+    <div class="card-body">
+        <img src = "@item.Image.ToImg()" alt=""/>
+        <div class="info">
+            <h3>@item.Name</h3>
+            <a asp-page="/EditCategory" asp-route-id="@item.Id"><button>Edit</button></a>
+            <a asp-page="/RemoveCategory" asp-route-id="@item.Id"><button>Remove</button></a>
+        </div>
+    </div>
+}

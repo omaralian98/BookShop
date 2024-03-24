@@ -1,0 +1,80 @@
+@page
+@model EditBook
+@{
+    #pragma warning disable 8602
+    int counter = 0;
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edit Book</title>
+        <link rel="stylesheet" asp-href-include="/css/addbook.css" asp-append-version="true">
+        <script asp-src-include="/js/AddBook.js" asp-asp-append-version="true"></script>
+    </head>
+    <body>
+        <div class="blob"></div>
+        <div class="wrapper">
+            <form asp-page-handler="Update" method="post" enctype="multipart/form-data" >
+                <h2>Edit Book</h2>
+                <input type="hidden" asp-for="@Model.pro.Id"/>
+                <div class="input-box">
+                    <input class="SPE" asp-for="@Model.pro.Title" type="text" required>
+                    <label asp-for="@Model.pro.Title">Title</label>
+                </div>
+                <div class="input-box">
+                    <input class="SPE" asp-for="@Model.pro.Author" type="text" required>
+                    <label asp-for="@Model.pro.Author">Author</label>
+                </div>
+                <div class="input-box">
+                    <input class="SPE" asp-for="@Model.pro.Description" type="text" required>
+                    <label asp-for="@Model.pro.Description">Description</label>
+                </div>
+                <div class="input-box">
+                    <div id="list1" class="dropdown-check-list" tabindex="100">
+                        <span class="anchor" onclick="Act(event)">Select Fruits</span>
+                        <ul class="items">
+                            @foreach (Category it in Model.Category.Categories) {
+                                <div class="speical">
+                                    <li><input class="inpo" type="checkbox" class="inpo" asp-for="@Model.Catego[counter]" id="@it.Id"/>@it.Name</li>
+                                </div>
+                                counter += 1;
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="input-box">
+                    <input class="SPE" asp-for="@Model.pro.PublishDate" type="date" required>
+                    <label asp-for="@Model.pro.PublishDate">PublishData</label>
+                </div>
+                <div class="AAA">
+                    <div id="b" class="input-box">
+                        <input class="SPE" asp-for="@Model.pro.Pages" type="number" min="0">
+                        <label asp-for="@Model.pro.Pages">Page</label>
+                    </div>
+                    <div id="b" class="input-box">
+                        <input class="SPE" asp-for="@Model.pro.Rating" type="number" step="0.1" min="0.0" max="5.0" pattern=[0]{.}[0]>
+                        <label asp-for="@Model.pro.Rating">Rating</label>
+                    </div>
+                    <div id="b" class="input-box">
+                        <input class="SPE" asp-for="@Model.pro.Price" type="number" step="1.0" pattern=[0]{.}[0][0]>
+                        <label asp-for="@Model.pro.Price">Price</label>
+                    </div>
+                </div>
+                <div class="input-box">
+                    <input class="SPE" asp-for="@Model.coverpage" type="file">
+                    <label asp-for="@Model.coverpage">CoverPage</label>
+                </div>
+                <div class="input-box">
+                    <input class="SPE" asp-for="@Model.pdf" type="file">
+                    <label asp-for="@Model.pdf">PDF</label>
+                </div>
+                <input type="hidden" asp-for="@Model.pdfdata"/>
+                <input type="hidden" asp-for="@Model.data"/>
+                <button type="submit">Edit</button>
+            </form>
+        </div>
+    </body>
+</html>

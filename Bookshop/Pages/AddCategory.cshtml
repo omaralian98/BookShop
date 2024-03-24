@@ -1,0 +1,10 @@
+@page
+@model AddCategory
+<form asp-page-handler="Add" method="post" enctype="multipart/form-data">
+    <label asp-for="@Model.category">Category</label>
+    <input asp-for="@Model.category" type="text"/>
+    <br />
+    <label asp-for="@Model.image">Image</label>
+    <input asp-for="@Model.image" type="file"/>
+    <button type="submit">Add</button>
+</form>

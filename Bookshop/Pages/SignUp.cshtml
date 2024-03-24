@@ -1,0 +1,70 @@
+@page
+@model SignUp
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" asp-href-include="/css/all.css" asp-append-version="true" />
+        <link rel="stylesheet" asp-href-include="/css/style.css" asp-append-version="true"/>
+        <title>Login</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="form-container">
+                <h1 class="form-header">SIGNUP</h1>
+                <form class="form signup" asp-page-handler="Save" method="post" enctype="multipart/form-data">
+                    <div class="data-feild">
+                        <label asp-for="@Model.user.Username">Username</label>
+                        <input asp-for="@Model.user.Username" id="username" type="text" placeholder="Enter Your UserName..."/>
+                        <div class="error error-user">
+                            Please Enter UserName.
+                        </div>
+                    </div>
+                    <div class="data-feild">
+                        <label asp-for="@Model.user.Password">Password</label>
+                        <div class="pass-feild">
+                            <input asp-for="@Model.user.Password" id="pass" type="password" placeholder="Enter Your Password..."/>
+                            <i class="fa-regular fa-eye-slash" style="color: var(--text-light);"></i>
+                        </div>
+                        <div class="error error-pass">
+                            Please Enter Password.
+                        </div>
+                    </div>
+                    <div class="data-feild">
+                        <label asp-for="@Model.user.Email">Email</label>
+                        <input asp-for="@Model.user.Email" id="email" type="email" placeholder="Enter Your Email..."/>
+                        <div class="error error-email">
+                            Email Not Correct.
+                        </div>
+                    </div>
+                    <div class="data-feild">
+                        <label asp-for="@Model.user.Phone">Phone</label>
+                        <input asp-for="@Model.user.Phone" id="phone" type="text" placeholder="Example: +9639********"/>
+                        <div class="error error-phone">
+                            Phone Number Not Correct.
+                        </div>
+                    </div>
+                    <div class="data-feild">
+                        <label asp-for="@Model.user.Birthday">Birthday</label>
+                        <input asp-for="@Model.user.Birthday" id="birth" type="date" placeholder="Enter Your Birthday..."/>
+                        <div class="error error-birth">
+                            You Should be Between 8 And 90 Years Old.
+                        </div>
+                    </div>
+                    <div class="data-feild">
+                        <label asp-for="@Model.Avatar">Avatar</label>
+                        <input asp-for="@Model.Avatar" type="file">
+                    </div>
+                    <div class="buttons-feild">
+                        <button type="submit">Sign up</button>
+                        <a asp-page="Login">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script asp-src-include="/js/jquery-3.7.0.min.js" asp-append-version="true"></script>
+        <script asp-src-include="/js/main.js" asp-append-version="true"></script>
+    </body>
+</html>

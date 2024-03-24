@@ -1,0 +1,57 @@
+.toggle-button-wrapper {
+    --height: 4rem;
+
+    width: fit-content;
+    height: var(--height);
+
+    display: flex;
+    place-content: center;
+    place-items: center;
+    gap: 1rem;
+}
+
+.toggle-button-wrapper label {
+    cursor: pointer;
+}
+
+.toggle-button-wrapper .toggle-button {
+    position: relative;
+    height: calc(var(--height) * 3 / 4);
+    aspect-ratio: 9 / 4;
+
+    border-radius: 100rem;
+
+    overflow: hidden;
+}
+
+.toggle-button-wrapper .toggle-button>input {
+    visibility: hidden;
+}
+
+.toggle-button-wrapper .toggle-button>div {
+    --left: -0.2rem;
+
+    position: absolute;
+    left: var(--left);
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100%;
+    aspect-ratio: 1;
+
+    background-color: var(--background-colour);
+
+    border-radius: inherit;
+    border: inherit;
+
+    transition:
+        left 175ms 0ms cubic-bezier(1, 1, 1, 1),
+        transform 175ms 0ms cubic-bezier(1, 1, 1, 1),
+        background-color 175ms 0ms cubic-bezier(1, 1, 1, 1);
+}
+
+.toggle-button-wrapper .toggle-button>input:checked+div {
+    left: calc(100% - var(--left));
+    transform: translate(-100%, -50%) scale(1.05);
+
+    background-color: var(--main-colour);
+}

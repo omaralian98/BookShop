@@ -1,0 +1,29 @@
+<header>
+    <figure id="logo">
+        <h1>BookShop</h1>
+    </figure>
+
+    <div id="navigation-bar-wrapper">
+
+        <nav id="navigation-bar">
+            <a class="btn" asp-action="Index">Home</a>
+            <a class="btn" asp-action="Shop">Shop</a>
+            <a class="btn" asp-page="/Dashboard">Dashboard</a>
+            <a class="btn" asp-page="/Login">Login</a>
+            <a class="btn" onclick="CallCartPage('@Url.Page("/Cart", null, new { Ids = "IdsValue" })')">Cart</a>
+        </nav>
+
+    </div>
+    <button id="navigation-bar-button">
+        <div style="--index: 3;"></div>
+        <div style="--index: 2;"></div>
+        <div style="--index: 1;"></div>
+    </button>
+</header>
+@RenderBody()
+<footer>
+    <p>Credits:</p>
+    <marquee id="credits-displayer">
+        hisham_198882 omar_192751 lana_205886 fatema_200013
+    </marquee>
+</footer>

@@ -1,0 +1,15 @@
+@page
+@model EditCategory
+@{
+    #pragma warning disable 8602
+}
+<form asp-page-handler="Update" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="@Model.category.Id"/>
+    <label asp-for="@Model.category.Name">Category</label>
+    <input asp-for="@Model.category.Name" type="text"/>
+    <br />
+    <label asp-for="@Model.image">Image</label>
+    <input asp-for="@Model.image" type="file"/>
+    <input type="hidden" asp-for="@Model.data"/>
+    <button type="submit">Edit</button>
+</form>

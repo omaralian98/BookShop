@@ -1,0 +1,8 @@
+@page
+@model AddRole
+<form asp-page-handler="Add" method="post">
+    <label asp-for="@Model.role">Role</label>
+    <input asp-for="@Model.role" type="text"/>
+    <br />
+    <button type="submit">Add</button>
+</form>

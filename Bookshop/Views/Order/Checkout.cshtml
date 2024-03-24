@@ -1,0 +1,73 @@
+@model Order
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" asp-href-include="/css/Template.css" asp-append-version="true"/>
+    <script defer type="module" asp-src-include="/js/Template.js" asp-append-version="true"></script>
+    <link rel="stylesheet" asp-href-include="/css/Style.global.css" asp-append-version="true"/>
+    <script defer type="module" asp-src-include="/js/Main.global.js" asp-append-version="true"></script>
+    <link rel="stylesheet" asp-href-include="/css/Checkout.css" asp-append-version="true">
+    <script defer type="module" asp-src-include="/js/Checkout.js"></script>
+</head>
+<body>
+    <main>
+        <h1>Checkout Now</h1>
+        <figure>
+            <img src="/Images/book_advertisement.svg" alt="book_advertisement" />
+        </figure>
+        <p>Please enter your details, and we'll ship your goods right away!</p>
+        <div asp-validation-summary="All"></div>
+        <form asp-action="Checkout" method="post">
+            <section id="ship-to-section">
+                <h3>Ship to</h3>
+                <div class="input-field-container">
+                    <label>Name</label>
+                    <input asp-for="Name" type="text" name="name" id="name-input" required placeholder="Jack" />
+                </div>
+            </section>
+            <section id="address-section">
+                <h3>Address</h3>
+                <div class="input-field-container">
+                    <label>Country</label>
+                    <input asp-for="Country" type="text" name="country" id="country-input" required placeholder="Syria" />
+                </div>
+                <div class="input-field-container">
+                    <label>Governorate</label>
+                    <input asp-for="Governorate" type="text" id="state-input" required placeholder="Damascus" />
+                </div>
+                <div class="input-field-container">
+                    <label>City</label>
+                    <input asp-for="City" type="text" name="city" id="city-input" required placeholder="Damascus-city" />
+                </div>
+                <div class="input-field-container">
+                    <label>Street</label>
+                    <input asp-for="Street" type="text" id="line-input" required placeholder="Street" />
+                </div>
+                <div class="input-field-container">
+                    <label>Zip</label>
+                    <input asp-for="Zip" type="text" name="zip" id="zip-input" required placeholder="1111" />
+                </div>
+            </section>
+
+            <section id="option-section">
+                <h3>Options</h3>
+                <div class="toggle-button-wrapper">
+                    <label>Gift Wrap these items</label>
+                    <button class="toggle-button" type="button">
+                        <input asp-for="@Model.GiftWrap" type="checkbox" />
+                        <div></div>
+                    </button>
+                </div>
+            </section>
+
+            <div class="button-displayer">
+                <button type="reset">Reset</button>
+                <button class="emphasized-button arrowed-button" type="submit">Complete Order</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

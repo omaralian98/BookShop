@@ -1,0 +1,29 @@
+@model IQueryable<Category> 
+<select name="op" id="op">
+    @{
+        #pragma warning disable 8600, 8602
+        string des = Url.Action("Shop", "Home", new { Category = "None" });
+    }
+    <option value="@des">None</option>
+    @foreach (var it in Model)
+    {
+        if (it.Name == ViewData["Category"].ToString()) {
+            des = Url.Action("Shop", "Home", new { Category = it.Name });
+            <option value="@des" selected>@it.Name</option>
+        }
+        else {
+            des = Url.Action("Shop", "Home", new { Category = it.Name });
+            <option value="@des">@it.Name</option>
+        }
+        #pragma warning restore 8600, 8602
+    }
+</select>
+
+<script>
+    var e = document.getElementById("op");
+    e.addEventListener("change", function (event) {
+        var url = '@Url.Page("/Cart", null, new { Ids = "ids", url = "dest" })'
+        url =  url.replace("ids", Fetch());
+        window.location.href = url.replace("dest", event.target.value).replace("amp;", "");
+    });
+</script>

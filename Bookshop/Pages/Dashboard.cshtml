@@ -1,0 +1,167 @@
+@page
+@model Dashboard
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css"/>
+    <link rel="stylesheet" asp-href-include="/css/Dashboard.css" asp-append-version="true"/>
+    @if (Model.render == "Accounts") {
+        <link rel="stylesheet" asp-href-include="/css/mainAccou.css" asp-append-version="true"/>
+    }
+    else if (Model.render == "Categories") {
+        <link rel="stylesheet" asp-href-include="/css/mainCateg.css" asp-append-version="true">
+    }
+    else if (Model.render == "Books"){
+        <link rel="stylesheet" asp-href-include="/css/dash.css" asp-append-version="true" />
+        <link rel="stylesheet" asp-href-include="/css/all.min.css" asp-append-version="true"/>
+    }
+    else if (Model.render == "Roles") {
+        <link rel="stylesheet" asp-href-include="/css/roleindex.css" asp-append-version="true">
+    }
+    else if (Model.render == "Orders") {
+        <link rel="stylesheet" asp-href-include="/lib/bootstrap/css/bootstrap.min.css" asp-append-version="true"/>
+    }
+    <script asp-src-include="/js/dash.js" asp-append-version="true"></script>
+</head>
+<body>
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="brand">
+                <span class="ti-unlink"></span>  
+                <span>Dashboard</span>
+            </h3>
+            <label for="sidebar-toggle" class="ti-menu-alt" onclick="StateChange()"></label>
+        </div>
+
+        <div class="sidebar-menu">
+            <ul>
+                <i></i>
+                <li>
+                    <a asp-action="Index" asp-controller="Home">
+                        <span class="ti-home"></span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-page-handler="Fet" asp-route-a="Books">
+                        <span class="ti-book"></span>
+                        <span>Book</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-page-handler="Fet" asp-route-a="Orders">
+                        <span class="ti-face-smile"></span>
+                        <span>Order</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-page-handler="Fet" asp-route-a="Accounts">
+                        <span class="ti-settings"></span>
+                        <span>Accounts</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-page-handler="Fet" asp-route-a="Roles">
+                        <span class="ti-clipboard"></span>
+                        <span>Roles</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-page-handler="Fet" asp-route-a="Categories">
+                        <span class="ti-folder"></span>
+                        <span >Categories</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <div class="search-wrapper">
+                <span class="ti-search"></span>
+                <input type="search" placeholder="Search">
+            </div>
+
+            <div class="social-icons">
+                <span class="ti-bell"></span>
+                <span class="ti-comment"></span>
+                @if (Model.ImageData == null) {
+                    <div><img src="/AccountImage/None.jpg" alt="Fuck"></div>
+                }
+                else {
+                    <div><img src="@Model.ImageData" alt="Fuck"></div>
+                }
+            </div>
+        </header>
+        <main>
+            @{
+                if (Model.render == "Orders") {
+                    <div class="dashboard-cards">
+                        <h1>Orders</h1>
+                        <div class="card-single">
+                            <partial name="Orders" model="@Model.Order.Orders.ToList()"/>
+                        </div>
+                    </div>
+                }
+                else if (Model.render == "Accounts") {
+                    <div class="dashboard-cards">
+                        <h1>Accounts</h1>
+                        <div class="card-single">
+                            <partial name="Accounts" model="@Model.Account.Accounts" />
+                            <a asp-page="/AddAccount" class="new-book">Add new Account</a>
+                        </div>
+                    </div>
+                }
+                else if (Model.render == "Books") {
+                    @foreach (Category it in Model.Category.Categories.Where(x => x.Books.Any())) {
+                        <section class="Library">
+                            <h3 class="categ">@it.Name</h3>
+                            <div class="activity-grid">
+                                <partial name="Books" model="@Model.Book.Books.Where(x => x.Categories.Any(y => y.Id == it.Id))" />
+                            </div>
+                        </section>
+                    }
+                    <section class="Library">
+                        <h3 class="categ">None</h3>
+                        <div class="activity-grid">
+                            <partial name="Books" model="@Model.Book.Books.Where(x => x.Categories.Any() == false)"/>
+                        </div>
+                    </section>
+                    <div class="Add-book">
+                        <a asp-page="/AddBook">Add new Book</a>
+                    </div>
+                }
+                else if (Model.render == "Roles") {
+                    <div class="dashboard-cards">
+                        <h1>Roles</h1>
+                        <div class="card-single">
+                            <partial name="Roles" model="@Model.Role.Roles" />
+                            <a asp-page="/AddRole" class="new-role">Add new role</a>
+                        </div>
+                    </div>
+                }
+                else if (Model.render == "Categories") {
+                    <div class="dashboard-cards">
+                        <h1 class="categ">All Categories</h1>
+                        <div class="card-single">
+                            <partial name="Categories" model="@Model.Category.Categories" />
+                            <div class="card-body">
+                                <div class="newcateg">
+                                    <a asp-page="/AddCategory" class="AAA" title="Add new Categories">+</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else {
+                }
+            }
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --main-color: #027581;
+    --color-dark: #1D2231;
+    --text-grey: #8390A2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Poppins' , sans-serif;
+    text-decoration: none;
+    list-style-type: none;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    max-height: 105vh;
+    background: #f1f5f9;
+}
+
+.box {
+    position: relative;
+    width: 380px;
+    height: 600px;
+    background: #FFF;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 600px;
+    background: linear-gradient(0deg,transparent,transparent,#45f3ff,#45f3ff,#45f3ff);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+} 
+.box::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 600px;
+    background: linear-gradient(0deg,transparent,transparent,#45f3ff,#45f3ff,#45f3ff);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -3s;
+}
+.borderLine {
+    position: absolute;
+    top: 0;
+    inset: 0;
+}
+.borderLine::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 600px;
+    background: linear-gradient(0deg,transparent,transparent,#000,#000,#000);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -1.5s;
+}
+.borderLine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 600px;
+    background: linear-gradient(0deg,transparent,transparent,#000,#000,#000);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -4.5s;
+}
+@keyframes animate {
+    0%
+    {
+        transform: rotate(0deg);
+    }
+    100%
+    {
+        transform: rotate(360deg);
+    }
+}
+.box form {
+    position: absolute;
+    inset: 4px;
+    background: var(--main-color);
+    padding: 22px 40px;
+    border-radius: 8px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+.box form h2 {
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+.box form .inputBox {
+    position: relative;
+    width: 300px;
+    margin-top: 15px;
+}
+.box form .inputBox input {
+    position: relative;
+    width: 100%;
+    padding: 0 10px 6px;
+    margin-top:24px;
+    background: transparent;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    color: var(--color-dark);
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+}
+.box form .inputBox label {
+    position: absolute;
+    left: 0;
+    padding: 20px 0px 10px;
+    pointer-events: none;
+    color: #fff;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    font-size: 0.75em;
+    transform: translateY(-26px);
+    bottom: 12px;
+}
+
+.box form .inputBox i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #f1f5f9;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    height: 34px;
+    pointer-events: none;
+}
+
+.box form input[type="submit"] {
+    border:none;
+    outline: none;
+    padding: 5px 25px;
+    background-color: #33b5becb;
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 10px;
+    font-weight: 600;
+    width: 80px;
+    margin: 7% 35%;
+    color: #fff;
+}
+.box form input[type="submit"]:hover {
+    background-color: #fff;
+    color: var(--main-color);
+}
+.box form input[type="submit"]:active {
+    opacity: 0.8;
+}
+.box form .Role {
+    position: relative;
+    margin-top: 15px;
+}
+
+.box form .Role label {
+    color: #fff;
+}
+.box form .Role select {
+    border-radius: 0px 10px 10px 0px; 
+    background-color: var(--main-color);
+    
+}
+.box form .Role optgroup {
+    display: flex;
+}
+.box form .Role option {
+    display: flex;
+    position: absolute;
+}

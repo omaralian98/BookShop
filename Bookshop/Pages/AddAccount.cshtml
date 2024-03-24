@@ -1,0 +1,65 @@
+@page
+@model AddAccount
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" asp-href-include="/css/Style-Acc.css" asp-append-version="true" />
+        <script asp-src-include="/js/AddAccount_Js.Js" asp-append-version="true"></script>
+        <title>Add Account</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css" />
+    </head>
+    <body>
+        <div class="box">
+            <label class="borderLine"></label>
+            <form asp-page-handler="Save" method="post" enctype="multipart/form-data">
+                <h2>User Account</h2>
+                <div class="inputBox">
+                    <input asp-for="@Model.user.Username" type="text" required>
+                    <label asp-for="@Model.user.Username">Username</label>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input asp-for="@Model.user.Password" type="password"
+                    minlength="4"
+                    maxlength="15" required>
+                    <label asp-for="@Model.user.Password">Password</label>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input asp-for="@Model.user.Email" type="email" required>
+                    <label asp-for="@Model.user.Email">Email</label>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input asp-for="@Model.user.Phone" type="text" placeholder="enter your 10 digit phone number" pattern="[0-9]{10}" required/>
+                    <label asp-for="@Model.user.Phone">Phone</label>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input asp-for="@Model.user.Birthday" type="date" required>
+                    <label asp-for="@Model.user.Birthday">Birthday</label>
+                    <i></i>
+                </div>
+                <div class="Role">
+                    <label asp-for="@Model.RoleId">Choose Roles</label>
+                    <select asp-for="@Model.RoleId">
+                        <optgroup>
+                            @foreach (Role it in Model.role.Roles) {
+                                <option value="@it.Id">@it.Name</option>
+                            }
+                        </optgroup>
+                    </select>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input asp-for="@Model.Avatar" type="file">
+                    <label asp-for="@Model.Avatar">Avatar</label>
+                </div>
+                <input type="submit" value="Add" />
+            </form>
+        </div>
+    </body>
+</html>

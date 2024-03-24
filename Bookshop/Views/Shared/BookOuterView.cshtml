@@ -1,0 +1,20 @@
+@model Book
+@{
+    #pragma warning disable 8600, 8604
+    string imreBase64Data = Convert.ToBase64String(Model.Coverpage);
+    string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
+    string dest = Url.Action("Preview", "Home", new { Id = Model?.Id });
+    string url = Url.Page("/Cart", null, new { Ids = "ids", url = dest });
+    string topl = Url.Page("/Cart", "Tope", new { Id = Model?.Id});
+    #pragma warning restore 8600, 8604
+}
+<figure class="book-card" data-rating="@Model?.Rating" onclick="CallPage('@url')">
+    <img src = "@imgDataURL" alt="book_preview_image"/>
+    <figcaption>
+        <a class="add-to-cart-button" onclick="AddJa(event, @Model?.Id)">
+            <button></button>
+        </a>
+        <h4 title="Book Title">@Model?.Title</h4>
+        <p class="price-displayer">@Model?.Price$</p>
+    </figcaption>
+</figure>

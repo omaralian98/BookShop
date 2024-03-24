@@ -1,0 +1,113 @@
+/*@import url("/css/Style.global.css");*/
+
+main figure {
+    width: 55vmin !important;
+    aspect-ratio: 3 / 4 !important;
+
+    border-radius: 2rem;
+    border: 0.2rem solid var(--fore-colour);
+
+    overflow: hidden;
+}
+
+main figure>img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+main #statistics-displayer {
+    display: flex;
+    flex-wrap: wrap;
+    place-content: center;
+    place-items: center;
+    gap: 4rem 2rem;
+
+    padding: 2rem;
+}
+
+main #statistics-displayer q {
+    padding: 1rem 1.5rem;
+
+    color: inherit;
+    background-color: var(--main-colour);
+
+    text-shadow: 0.15rem 0.15rem 0 var(--background-colour);
+
+    border-radius: 2rem;
+}
+
+main #statistics-displayer #rating-displayer q {
+    background-color: gold;
+}
+
+main :is(#genre-displayer, #description-displayer) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    padding: 2rem;
+
+    background-color: var(--background-darker-colour);
+
+    border-radius: 2rem;
+}
+
+main :is(#genre-displayer, #description-displayer) h3 {
+    width: 100%;
+    padding-bottom: 1rem;
+}
+
+main #genre-displayer li button {
+    padding: 1rem;
+
+    background-color: var(--background-colour);
+
+    border: none;
+    border-radius: 2rem;
+}
+
+main #genre-displayer li::marker {
+    content: none;
+}
+
+main .button-displayer #add-to-cart-button {
+    --icon-url: url("/Images/Icons/shopping_cart.svg");
+}
+
+main .button-displayer #download-pdf-button {
+    --icon-url: url("/Images/Icons/pdf_2.svg");
+}
+
+@media (min-width: 820px) {
+
+    main {
+        display: grid;
+        grid-template-columns: auto 1fr !important;
+        grid-template-rows: repeat(6, auto) !important;
+        place-content: start !important;
+        place-items: start !important;
+        gap: 3rem !important;
+    }
+
+    main figure {
+        grid-row: 1 / 6 !important;
+    }
+
+    main #statistics-displayer {
+        padding: 0;
+    }
+
+    main .button-displayer {
+        grid-row: 4;
+    }
+
+    main #genre-displayer {
+        width: calc(100% - var(--padding) * 2);
+    }
+
+    main #description-displayer {
+        grid-column: 1 / -1;
+    }
+}

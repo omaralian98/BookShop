@@ -1,0 +1,70 @@
+@model PreviewBooks
+<h1>Welcome</h1>
+@{
+    #pragma warning disable 8600, 8602
+    string categoryname = ViewBag.CategoryName;
+    ViewData["Category"] = categoryname;
+    string dest = Url.Action("Shop", "Home", new { Category = categoryname, Page = Model.NextPage});
+    string Nexturl = Url.Page("/Cart", null, new { Ids = "ids", url = dest });
+    dest = Url.Action("Shop", "Home", new { Category = categoryname, Page = Model.PreviousPage});
+    string Previousurl = Url.Page("/Cart", null, new { Ids = "ids", url = dest });
+    dest = Url.Action("Shop", "Home", new { Category = categoryname, Page = "NotSet"});
+    string NotSeturl = Url.Page("/Cart", null, new { Ids = "ids", url = dest });
+    #pragma warning restore 8600
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookShop</title>
+    <script asp-src-include="/js/AddToCart.js" asp-append-version="true"></script>
+    <link rel="stylesheet" asp-href-include="/css/Template.css" asp-append-version="true"/>
+    <script defer type="module" asp-src-include="/js/Template.js" asp-append-version="true"></script>
+    <link rel="stylesheet" asp-href-include="/css/Style.global.css" asp-append-version="true"/>
+    <script defer type="module" asp-src-include="/js/Main.global.js" asp-append-version="true"></script>
+    <link rel="stylesheet" asp-href-include="/css/Shop.css" asp-append-version="true">
+    <script defer type="module" asp-src-include="/js/Shop.js" asp-append-version="true"></script>
+</head>
+<body>
+    <main>
+        <div>
+            <label>Genre</label>
+            @await Component.InvokeAsync("CategoryFilter")
+        </div>
+        <main id="book-card-displayer">
+            @foreach (Book item in Model.books)
+            {
+                <partial name="BookOuterView" model="@item" />
+            }       
+        </main>
+        <div id="pagination-button-displayer" class="button-displayer">
+            @if (Model.CurrentPage == 1) {
+                <a style="visibility: hidden;" onclick="CallPage('@Previousurl')">
+                    <button class="left-arrowed-button">Previous</button>
+                </a>
+            }
+            else {
+                <a onclick="CallPage('@Previousurl')">
+                    <button class="left-arrowed-button">Previous</button>
+                </a>
+            }
+            <p>Page <input class="Pagging" value="@Model.CurrentPage" max="@Model.TotalPages" type="number" onkeyup="FixWidth(this, '@NotSeturl', '@Model.CurrentPage')"/>/@Model.TotalPages</p>
+            @if(Model.CurrentPage == Model.TotalPages) {
+                <a style="visibility: hidden;" onclick="CallPage('@Nexturl')">
+                    <button class="arrowed-button">Next</button>
+                </a>
+            }
+            else {
+                <a onclick="CallPage('@Nexturl')">
+                   <button class="arrowed-button">Next</button>
+                </a>
+            }
+            <a>
+                <button style="display:none;" id="Fety" class="arrowed-button" onclick="Fetch()">Fetch</button>
+            </a>
+        </div>
+    </main>
+</body>
+</html>

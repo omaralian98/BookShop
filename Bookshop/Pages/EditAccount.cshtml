@@ -1,0 +1,71 @@
+@page
+@model EditAccount
+@{
+    #pragma warning disable 8602
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" asp-href-include="/css/Style-Acc.css" asp-append-version="true" />
+        <script asp-src-include="/js/AddAccount_Js.Js" asp-append-version="true"></script>
+        <title>Edit Account</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css" />
+    </head>
+    <body>
+        <div class="box">
+            <label class="borderLine"></label>
+            <form asp-page-handler="Update" method="post" enctype="multipart/form-data">
+                <h2>User Account</h2>
+                <input type="hidden" asp-for="@Model.user.Id"/>
+                <div class="inputBox">
+                    <input asp-for="@Model.user.Username" type="text" required>
+                    <label asp-for="@Model.user.Username">Username</label>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input asp-for="@Model.user.Password" type="text" minlength="4" maxlength="15" required>
+                    <label asp-for="@Model.user.Password">Password</label>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input asp-for="@Model.user.Email" type="email" required>
+                    <label asp-for="@Model.user.Email">Email</label>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input asp-for="@Model.user.Phone" type="text"/>
+                    <label asp-for="@Model.user.Phone">Phone</label>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input asp-for="@Model.user.Birthday" type="date" required>
+                    <label asp-for="@Model.user.Birthday">Birthday</label>
+                    <i></i>
+                </div>
+                <div class="Role">
+                    <label asp-for="@Model.RoleId">Choose Roles</label>
+                    <select asp-for="@Model.RoleId">
+                        @foreach (Role it in Model.role.Roles) {
+                            if (it.Id == Model.RoleId) {
+                                <option value="@it.Id" selected>@it.Name</option>
+                            }
+                            else {  
+                                <option value="@it.Id">@it.Name</option>
+                            }
+                        }
+                    </select>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input asp-for="@Model.Avatar" type="file">
+                    <label asp-for="@Model.Avatar">Avatar</label>
+                </div>
+                <input type="hidden" asp-for="@Model.data"/>
+                <input type="submit" value="Edit" />
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,12 @@
+@page
+@model EditRole
+@{
+    #pragma warning disable 8602
+}
+<form asp-page-handler="Update" method="post">
+    <input type="hidden" asp-for="@Model.role.Id"/>
+    <label asp-for="@Model.role.Name">Role</label>
+    <input asp-for="@Model.role.Name" type="text"/>
+    <br />
+    <button type="submit">Edit</button>
+</form>

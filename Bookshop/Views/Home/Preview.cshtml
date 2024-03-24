@@ -1,0 +1,66 @@
+@model Book 
+@{
+    long id = ViewBag.Id;
+    #pragma warning disable 8600, 8602, 8604
+    string imreBase64Data = Convert.ToBase64String(Model.Coverpage);
+    string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
+    string dest = Url.Action("Preview", "Home", new { Id = id });
+    #pragma warning restore 8600, 8604
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Model.Title</title>
+    <link rel="stylesheet" asp-href-include="/css/Template.css" asp-append-version="true"/>
+    <script defer type="module" asp-src-include="/js/Template.js" asp-append-version="true"></script>
+    <link rel="stylesheet" asp-href-include="/css/Style.global.css" asp-append-version="true"/>
+    <script defer type="module" asp-src-include="/js/Main.global.js" asp-append-version="true"></script>
+    <link rel="stylesheet" asp-href-include="/css/Book Preview.css" asp-append-version="true"/>
+    <script defer asp-src-include="/js/Book Preview.js" asp-append-version="true"></script>
+    <script defer asp-src-include="/js/AddToCart.js" asp-append-version="true"></script>
+</head>
+<body>
+    <main>
+        <figure>
+            <img src = "@imgDataURL" alt="book_preview_image"/>
+        </figure>
+
+        <h1>@Model.Title</h1>
+        <h3>@Model.Author</h3>
+
+        <div id="statistics-displayer">
+            <p id="rating-displayer">
+                Rating <q>@Model.Rating</q>
+            </p>
+            <p id="price-displayer">
+                Price <q>@Model.Price$</q>
+            </p>
+        </div>
+
+        <ul id="genre-displayer">
+            <h3>Genres:</h3>
+            @foreach (Category it in Model?.Categories)
+            {
+                <li><a asp-controller="Home" asp-action="Shop" asp-route-Category="@it.Name"><button>@it.Name</button></a></li>
+            }
+        </ul>
+
+        <div id="description-displayer">
+            <h3>Description:</h3>
+            <p>@Model.Description</p>
+        </div>
+
+        <div class="button-displayer">
+            <a asp-page="/Cart" asp-route-Ids="@Model?.Id" asp-route-url="@dest">
+                <button class="icon-button" id="add-to-cart-button">Add to Cart</button>
+            </a>
+
+            <a asp-action="Download" asp-route-Id="@id">
+                <button class="icon-button" id="download-pdf-button">Download PDF</button>
+            </a>
+        </div>
+    </main>
+</body>
+</html>
